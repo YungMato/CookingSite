@@ -1,7 +1,43 @@
 ﻿@page "/cart"
+@rendermode InteractiveServer
+
+<PageTitle>Einkaufskorb</PageTitle>
 
 <h3>Einkaufkorb</h3>
+<input placeholder="z.B. Bananen 200g" @bind="newCartItem" />
+<button @onclick="AddToCart">Hinzufügen</button>
+
+<div id="cartItemWrapper">
+	@foreach(var item in CartItems)
+	{
+		<div class="cardItem" Background="Background.Danger" @onclick="() => RemoveFromCart(item.Name)">
+			<p>@item.Name</p>
+		</div>
+	}
+</div>
+
 
 @code {
+	private List<CartItem> CartItems = new();
+	private string? newCartItem;
 
+	private void AddToCart()
+	{
+		if(!string.IsNullOrWhiteSpace(newCartItem))
+		{
+			CartItems.Add(new CartItem { Name = newCartItem });
+			newCartItem = string.Empty;
+		}
+
+	}
+
+	private void RemoveFromCart(string cartItemName)
+	{
+		var itemToRemove = CartItems.SingleOrDefault(x => x.Name == cartItemName);
+
+		if (itemToRemove != null && CartItems.Contains(itemToRemove))
+		{
+			CartItems.Remove(itemToRemove);
+		}
+	}
 }
