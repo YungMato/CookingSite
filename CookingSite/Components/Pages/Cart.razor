@@ -29,6 +29,7 @@
 			newCartItem = string.Empty;
 		}
 
+		SaveCart();
 	}
 
 	private void RemoveFromCart(string cartItemName)
@@ -39,5 +40,12 @@
 		{
 			CartItems.Remove(itemToRemove);
 		}
+
+		SaveCart();
+	}
+
+	private void SaveCart()
+	{
+		// Save Cart in Cloud/File
 	}
 }

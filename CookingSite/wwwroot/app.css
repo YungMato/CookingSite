@@ -60,17 +60,20 @@ h1:focus {
 }
 
 .cardItem {
-    width: 30%;
-    height: 20%;
+    color: white;
+    width: 200px;
+    height: 200px;
     margin: 5px;
 
     background-color: black;
     border: 1px solid red;
 }
 
+.cardItem:hover {
+    cursor: pointer;
+}
+
 #cartItemWrapper {
-    width: 70vw;
-    height: 60vh;
     display: flex;
     flex-wrap: wrap;
     
